@@ -30,7 +30,10 @@ This is a NestJS application designed to provide authentication services. It inc
 2. Install dependencies
    yarn install
 3. Create a .env file based on the .env.example file and configure your environment variables.
+
+```bash
    cp .env.example .env
+```
 
 ## Running the app
 
