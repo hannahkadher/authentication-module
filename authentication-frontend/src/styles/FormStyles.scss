@@ -1,0 +1,127 @@
+$font-family: Arial, sans-serif;
+$background-color: #f8fafc;
+$white-color: #fff;
+$primary-color: rgba(15, 84, 38, 1);
+$hover-color: #16a085;
+$text-color: #000;
+$light-gray: #646464;
+$error-color: #d32f2f;
+$label-color: #16161D;
+$label-font-size: .875rem;
+$label-line-height: 1.25rem;
+
+body {
+  font-family: $font-family;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $background-color;
+}
+
+.form-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: $white-color;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+}
+
+.form-main {
+  background-color: $white-color;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+
+  h1 {
+    margin-bottom: 20px;
+    line-height: 1.1em;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    line-height: 2rem;
+  }
+}
+
+.form-box {
+  text-align: left;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  a {
+    color: $light-gray;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.form-button {
+  width: 100%;
+  padding: 15px;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 20px;
+  color: $white-color;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: none;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  &:disabled {
+    background-color: lighten($primary-color, 20%);
+    cursor: not-allowed;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  margin-top: 10px;
+}
+
+.greenIcon {
+  color: $primary-color;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.text-field-standard {
+  .MuiInputLabel-root {
+    font-weight: 500;
+    font-size: $label-font-size;
+    line-height: $label-line-height;
+    color: $label-color;
+
+    &.Mui-focused {
+      color: $label-color;
+    }
+  }
+
+  .MuiInput-underline:after {
+    border-bottom-color: $primary-color;
+  }
+}

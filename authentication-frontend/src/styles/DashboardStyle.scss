@@ -1,0 +1,65 @@
+@import url('https://fonts.google.com/share?selection.family=Bebas+Neue|Freeman');
+
+$primary-color: rgba(15, 84, 38, 1);
+$background-color: #f5f5f5;
+$text-color: #000;
+
+.dashboard-container {
+  background-color: $background-color;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  text-align: center;
+  position: relative;
+
+  .logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: $primary-color;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: 'pointer';
+    text-transform: none;
+    width: 10%;
+    color: #fff;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  h1 {
+    color: $text-color;
+    text-transform: uppercase;
+    letter-spacing: 0.1em; 
+    font-size: 3rem; 
+    line-height: 1.3em;
+    font-family: "Bebas Neue", sans-serif;
+
+    .primary-color {
+      color: $primary-color;
+    }
+
+    span {
+      display: inline-block;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  h1 span {
+    @for $i from 1 through 50 {
+      &:nth-child(#{$i}) {
+        animation-delay: 0.1s * $i; 
+      }
+    }
+  }
+}
