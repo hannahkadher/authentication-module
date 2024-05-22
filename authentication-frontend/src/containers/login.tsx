@@ -5,7 +5,7 @@ import { SubmitHandler } from 'react-hook-form';
 import { LoginData, LoginResponse } from '../types';
 import { LoginAPI } from '../services';
 import { APIError } from '../types';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks';
 
 const SignIn: React.FC = () => {
   const navigate = useNavigate();

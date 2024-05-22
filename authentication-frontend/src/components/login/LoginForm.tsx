@@ -3,7 +3,6 @@ import { SubmitHandler } from 'react-hook-form';
 import { Box, Typography, Link } from '@mui/material';
 
 import { LoginData } from '../../types/login';
-import { useCustomForm } from '../../hooks/useCustomForm';
 
 import { LoginSchema } from './LoginSchema';
 import FormTextField from '../form-text-field';
@@ -12,6 +11,7 @@ import FormHeader from '../form-header';
 import FormErrorMessage from '../form-error';
 import PasswordField from '../password-field';
 import FormButton from '../form-button';
+import { useCustomForm } from '../../hooks';
 
 interface LoginFormProps {
   onSubmit: SubmitHandler<LoginData>;

@@ -1,13 +1,11 @@
-// PasswordField.tsx
-import React from 'react';
-import { Controller } from 'react-hook-form';
+import { Controller, Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { TextField, IconButton, InputAdornment } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-interface PasswordFieldProps {
-  name: string;
-  control: any;
+interface PasswordFieldProps<T extends FieldValues> {
+  name: Path<T>; 
+  control: Control<T>;
   label: string;
   showPassword: boolean;
   toggleShowPassword: () => void;
@@ -15,7 +13,7 @@ interface PasswordFieldProps {
   helperText?: string;
 }
 
-const PasswordField: React.FC<PasswordFieldProps> = ({
+const PasswordField = <T extends FieldValues>({
   name,
   control,
   label,
@@ -23,11 +21,11 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
   toggleShowPassword,
   error,
   helperText,
-}) => (
+}: PasswordFieldProps<T>) => (
   <Controller
     name={name}
     control={control}
-    defaultValue=''
+    defaultValue={'' as PathValue<T, Path<T>>}
     render={({ field }) => (
       <TextField
         {...field}

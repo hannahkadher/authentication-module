@@ -3,13 +3,13 @@ import { SubmitHandler } from 'react-hook-form';
 import { Box, Typography, Link } from '@mui/material';
 import { User, SignUpFormData } from '../../types';
 import { signUpSchema } from './SignUpSchema';
-import { useCustomForm } from '../../hooks/useCustomForm';
 import FormTextField from '../form-text-field';
 import '../../styles/FormStyles.scss';
 import FormHeader from '../form-header';
 import FormErrorMessage from '../form-error';
 import PasswordField from '../password-field';
 import FormButton from '../form-button';
+import { useCustomForm } from '../../hooks';
 
 interface SignUpFormProps {
   onSubmit: SubmitHandler<User>;
@@ -28,8 +28,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit, loading, error }) => 
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleFormSubmit: SubmitHandler<SignUpFormData> = (data) => {
-    const { confirmPassword, ...submitData } = data;
-    onSubmit(submitData);
+    onSubmit(data);
   };
 
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
