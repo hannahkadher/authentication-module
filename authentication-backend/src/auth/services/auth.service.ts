@@ -13,10 +13,21 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  /**
+   * Validates a user by their email and password.
+   * @param email - The email of the user.
+   * @param password - The password of the user.
+   * @returns The validated user or null if validation fails.
+   */
   async validateUser(email: string, password: string) {
     return this.userService.validateUser(email, password);
   }
 
+  /**
+   * Registers a new user.
+   * @param createUserDto - Data transfer object containing user registration information.
+   * @returns The created user information.
+   */
   async signUp(createUserDto: CreateUserDto) {
     const email = createUserDto.email;
     const username = createUserDto.name;
@@ -25,6 +36,11 @@ export class AuthService {
     return this.userService.createUser(email, username, password);
   }
 
+  /**
+   * Logs in a user and generates JWT access and refresh tokens.
+   * @param user - The user object containing username and userId.
+   * @returns An object containing access and refresh tokens.
+   */
   async login(user: any) {
     const payload = { username: user.username, sub: user.userId };
     const accessToken = this.jwtService.sign(payload, {
@@ -40,6 +56,12 @@ export class AuthService {
     });
   }
 
+  /**
+   * Refreshes the JWT access token using the provided refresh token.
+   * @param token - The old refresh token.
+   * @returns An object containing a new access token.
+   * @throws InternalServerErrorException if the token refresh fails.
+   */
   async refresh(token: string) {
     try {
       const payload = this.jwtService.verify(token, { ignoreExpiration: true });
@@ -58,6 +80,12 @@ export class AuthService {
     }
   }
 
+  /**
+   * Verifies the provided JWT token.
+   * @param token - The JWT token to verify.
+   * @returns The decoded token if verification is successful.
+   * @throws InternalServerErrorException if token verification fails.
+   */
   async verifyToken(token: string) {
     try {
       return this.jwtService.verify(token);

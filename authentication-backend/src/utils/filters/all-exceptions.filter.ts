@@ -6,7 +6,6 @@ import {
   Logger,
 } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
-import { omit } from 'lodash';
 
 @Catch(HttpException)
 export class AllExceptionsFilter implements ExceptionFilter {

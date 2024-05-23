@@ -24,6 +24,15 @@ export class UserService {
   private readonly logger = new Logger(UserService.name);
   constructor(private readonly userRepository: UserRepository) {}
 
+  /**
+   * Creates a new user with the provided email, name, and password.
+   * @param email - The email address of the new user.
+   * @param name - The name of the new user.
+   * @param password - The plain text password of the new user.
+   * @returns A response DTO containing the created user data.
+   * @throws BadRequestException if the email already exists.
+   * @throws InternalServerErrorException if user creation fails for other reasons.
+   */
   async createUser(
     email: string,
     name: string,
@@ -58,10 +67,23 @@ export class UserService {
     }
   }
 
+  /**
+   * Finds a user by their email address.
+   * @param email - The email address of the user to find.
+   * @returns The user if found, or null if not found.
+   */
   async findUserByEmail(email: string): Promise<User | null> {
     return this.userRepository.findUserByEmail(email);
   }
 
+  /**
+   * Validates a user by their email and password.
+   * @param email - The email address of the user.
+   * @param password - The plain text password of the user.
+   * @returns A response DTO containing the authenticated user data.
+   * @throws NotFoundException if the user is not found.
+   * @throws UnauthorizedException if the password is invalid.
+   */
   async validateUser(
     email: string,
     password: string,

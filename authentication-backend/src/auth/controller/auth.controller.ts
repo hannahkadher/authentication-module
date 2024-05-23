@@ -11,6 +11,12 @@ import { CreateUserDto, LoginDto } from '../dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  /**
+   * Handles user login
+   * @param loginDto - Data transfer object containing login credentials
+   * @param req - Request object containing user information
+   * @returns JWT token for authenticated user
+   */
   @UseGuards(LocalAuthGuard)
   @Post('login')
   @ApiOperation({
@@ -21,6 +27,11 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  /**
+   * Handles user signup
+   * @param createUserDto - Data transfer object containing user registration information
+   * @returns The created user information
+   */
   @Post('signup')
   @ApiOperation({
     summary: ControllerRoute.ACTIONS.SIGNUP_SUMMARY,
@@ -30,7 +41,16 @@ export class AuthController {
     return this.authService.signUp(createUserDto);
   }
 
+  /**
+   * Refreshes the authentication token
+   * @param token - The old JWT token that needs to be refreshed
+   * @returns A new JWT token
+   */
   @Post('refresh')
+  @ApiOperation({
+    summary: ControllerRoute.ACTIONS.REFRESH_SUMMARY,
+    description: ControllerRoute.ACTIONS.REFRESH_DESCRIPTION,
+  })
   async refreshToken(@Body('token') token: string) {
     return await this.authService.refresh(token);
   }

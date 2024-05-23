@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { UserRepository } from './user.respository';
 import { User } from '../../schema';
 
@@ -15,7 +14,6 @@ mockUserModel.findOne = jest.fn();
 
 describe('UserRepository', () => {
   let userRepository: UserRepository;
-  let userModel: Model<User>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -29,7 +27,6 @@ describe('UserRepository', () => {
     }).compile();
 
     userRepository = module.get<UserRepository>(UserRepository);
-    userModel = module.get<Model<User>>(getModelToken('User'));
   });
 
   afterEach(() => {
